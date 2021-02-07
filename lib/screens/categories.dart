@@ -10,6 +10,7 @@ class CategoriesScreen extends StatelessWidget {
         title: const Text('SnackApp'),
       ),
       body: GridView(
+        padding: const EdgeInsets.all(25),
         children: snackList
             .map(
               (catData) => CategoryItem(
