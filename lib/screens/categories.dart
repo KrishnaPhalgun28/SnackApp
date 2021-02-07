@@ -14,6 +14,7 @@ class CategoriesScreen extends StatelessWidget {
         children: snackList
             .map(
               (catData) => CategoryItem(
+                catData.id,
                 catData.title,
                 catData.color,
               ),
