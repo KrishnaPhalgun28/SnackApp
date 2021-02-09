@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:SnackApp/screens/categories_snacks.dart';
 import 'package:SnackApp/screens/categories_snacks.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -37,8 +36,13 @@ class CategoryItem extends StatelessWidget {
       splashColor: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        padding: const EdgeInsets.all(10),
-        child: Text(title, style: Theme.of(context).textTheme.headline6),
+        padding: const EdgeInsets.all(5),
+        child: Center(
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.headline6,
+          ),
+        ),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
