@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:SnackApp/screens/categories_snacks.dart';
 import 'package:SnackApp/screens/categories_snacks.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -13,12 +14,19 @@ class CategoryItem extends StatelessWidget {
   );
 
   void selectCategory(BuildContext ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(
-        builder: (_) {
-          return CategoriesSnacksScreen(id, title);
-        },
-      ),
+    // Navigator.of(ctx).push(
+    //   MaterialPageRoute(
+    //     builder: (_) {
+    //       return CategoriesSnacksScreen(id, title);
+    //     },
+    //   ),
+    // );
+    Navigator.of(ctx).pushNamed(
+      CategoriesSnacksScreen.routeName,
+      arguments: {
+        'id': id,
+        'title': title,
+      },
     );
   }
 
