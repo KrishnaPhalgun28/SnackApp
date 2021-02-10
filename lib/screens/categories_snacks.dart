@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:SnackApp/database/snacks.dart';
+import 'package:SnackApp/models/snack_item.dart';
 
 class CategoriesSnacksScreen extends StatelessWidget {
   static const routeName = '/categories-snacks';
@@ -25,7 +26,14 @@ class CategoriesSnacksScreen extends StatelessWidget {
       body: Center(
         child: ListView.builder(
           itemBuilder: (ctx, index) {
-            return Text(categorySnacks[index].title);
+            // return Text(categorySnacks[index].title);
+            return SnackItem(
+              title: categorySnacks[index].title,
+              imageUrl: categorySnacks[index].imageUrl,
+              duration: categorySnacks[index].duration,
+              complexity: categorySnacks[index].complexity,
+              affordability: categorySnacks[index].affordability,
+            );
           },
           itemCount: categorySnacks.length,
         ),
