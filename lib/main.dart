@@ -1,3 +1,4 @@
+import 'package:SnackApp/screens/snack_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:SnackApp/screens/categories.dart';
 import 'package:SnackApp/screens/categories_snacks.dart';
@@ -34,7 +35,20 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (ctx) => CategoriesScreen(),
         CategoriesSnacksScreen.routeName: (ctx) => CategoriesSnacksScreen(),
+        SnackDetailScreen.routeName: (ctx) => SnackDetailScreen(),
       },
+      // onGenerateRoute: (settings) {
+      //   print(settings.arguments);
+      //   return MaterialPageRoute(
+      //     builder: (ctx) => CategoriesScreen(),
+      //   );
+      // },
+      // onUnknownRoute: (settings) {
+      //   print(settings.arguments);
+      //   return MaterialPageRoute(
+      //     builder: (ctx) => CategoriesScreen(),
+      //   );
+      // },
     );
   }
 }

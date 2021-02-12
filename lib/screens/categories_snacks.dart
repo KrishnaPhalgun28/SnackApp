@@ -28,6 +28,7 @@ class CategoriesSnacksScreen extends StatelessWidget {
           itemBuilder: (ctx, index) {
             // return Text(categorySnacks[index].title);
             return SnackItem(
+              id: categorySnacks[index].id,
               title: categorySnacks[index].title,
               imageUrl: categorySnacks[index].imageUrl,
               duration: categorySnacks[index].duration,

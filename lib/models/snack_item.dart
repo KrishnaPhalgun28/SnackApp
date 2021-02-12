@@ -1,7 +1,9 @@
+import 'package:SnackApp/screens/snack_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:SnackApp/models/snack.dart';
 
 class SnackItem extends StatelessWidget {
+  final String id;
   final String title;
   final String imageUrl;
   final int duration;
@@ -9,6 +11,7 @@ class SnackItem extends StatelessWidget {
   final Affordability affordability;
 
   SnackItem({
+    @required this.id,
     @required this.title,
     @required this.imageUrl,
     @required this.duration,
@@ -16,7 +19,12 @@ class SnackItem extends StatelessWidget {
     @required this.affordability,
   });
 
-  void selectSnack() {}
+  void selectSnack(BuildContext ctx) {
+    Navigator.of(ctx).pushNamed(
+      SnackDetailScreen.routeName,
+      arguments: id,
+    );
+  }
 
   String get complexityText {
     switch (complexity) {
@@ -47,7 +55,9 @@ class SnackItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: selectSnack,
+      onTap: () {
+        selectSnack(context);
+      },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 4,
