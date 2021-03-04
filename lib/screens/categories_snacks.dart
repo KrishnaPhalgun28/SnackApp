@@ -1,24 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:SnackApp/database/snacks.dart';
 import 'package:SnackApp/models/snack_item.dart';
+import 'package:SnackApp/models/snack.dart';
 
-class CategoriesSnacksScreen extends StatelessWidget {
+class CategoriesSnacksScreen extends StatefulWidget {
   static const routeName = '/categories-snacks';
-  // final String categoryId;
-  // final String categoryTitle;
 
-  // CategoriesSnacksScreen(this.categoryId, this.categoryTitle);
+  @override
+  _CategoriesSnacksScreenState createState() => _CategoriesSnacksScreenState();
+}
+
+class _CategoriesSnacksScreenState extends State<CategoriesSnacksScreen> {
+  String categoryTitle;
+  List<Snack> displayedSnacks;
+  var _loadedInitData = false;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
+
+  @override
+  void didChangeDependencies() {
+    if (!_loadedInitData) {
+      final routeArgs =
+          ModalRoute.of(context).settings.arguments as Map<String, String>;
+      categoryTitle = routeArgs['title'];
+      final categoryId = routeArgs['id'];
+      displayedSnacks = snackItems.where((snack) {
+        return snack.categories.contains(categoryId);
+      }).toList();
+      _loadedInitData = true;
+    }
+    super.didChangeDependencies();
+  }
+
+  void _removeSnack(String snackId) {
+    setState(() {
+      displayedSnacks.removeWhere((snack) => snack.id == snackId);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final routeArgs =
-        ModalRoute.of(context).settings.arguments as Map<String, String>;
-    final categoryTitle = routeArgs['title'];
-    final categoryId = routeArgs['id'];
-    final categorySnacks = snackItems.where((snack) {
-      return snack.categories.contains(categoryId);
-    }).toList();
-
     return Scaffold(
       appBar: AppBar(
         title: Text(categoryTitle),
@@ -26,17 +50,18 @@ class CategoriesSnacksScreen extends StatelessWidget {
       body: Center(
         child: ListView.builder(
           itemBuilder: (ctx, index) {
-            // return Text(categorySnacks[index].title);
+            // return Text(displayedSnacks[index].title);
             return SnackItem(
-              id: categorySnacks[index].id,
-              title: categorySnacks[index].title,
-              imageUrl: categorySnacks[index].imageUrl,
-              duration: categorySnacks[index].duration,
-              complexity: categorySnacks[index].complexity,
-              affordability: categorySnacks[index].affordability,
+              id: displayedSnacks[index].id,
+              title: displayedSnacks[index].title,
+              imageUrl: displayedSnacks[index].imageUrl,
+              duration: displayedSnacks[index].duration,
+              complexity: displayedSnacks[index].complexity,
+              affordability: displayedSnacks[index].affordability,
+              removeItem: _removeSnack,
             );
           },
-          itemCount: categorySnacks.length,
+          itemCount: displayedSnacks.length,
         ),
       ),
     );

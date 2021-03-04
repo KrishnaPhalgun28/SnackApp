@@ -98,6 +98,14 @@ class SnackDetailScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.close,
+        ),
+        onPressed: () {
+          Navigator.of(context).pop(snackId);
+        },
+      ),
     );
   }
 }
