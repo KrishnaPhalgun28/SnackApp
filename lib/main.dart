@@ -1,13 +1,49 @@
-import 'package:SnackApp/screens/snack_detail.dart';
-import 'package:SnackApp/screens/tabs.dart';
 import 'package:flutter/material.dart';
 // import 'package:SnackApp/screens/categories.dart';
 import 'package:SnackApp/screens/categories_snacks.dart';
 import 'package:SnackApp/screens/filters.dart';
+import 'package:SnackApp/database/snacks.dart';
+import 'package:SnackApp/models/snack.dart';
+import 'package:SnackApp/screens/snack_detail.dart';
+import 'package:SnackApp/screens/tabs.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegan': false,
+    'vegetarian': false,
+  };
+  List<Snack> _availableSnacks = snackItems;
+
+  void _setFilters(Map<String, bool> filterData) {
+    setState(() {
+      _filters = filterData;
+      _availableSnacks = snackItems.where((snack) {
+        if (_filters['gluten'] == true && !snack.isGlutenFree) {
+          return false;
+        }
+        if (_filters['lactose'] == true && !snack.isLactoseFree) {
+          return false;
+        }
+        if (_filters['vegetarian'] == true && !snack.isVegetarian) {
+          return false;
+        }
+        if (_filters['vegan'] == true && !snack.isVegan) {
+          return false;
+        }
+        return true;
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,9 +73,10 @@ class MyApp extends StatelessWidget {
       routes: {
         // '/': (ctx) => CategoriesScreen(),
         '/': (ctx) => TabsScreen(),
-        CategoriesSnacksScreen.routeName: (ctx) => CategoriesSnacksScreen(),
+        CategoriesSnacksScreen.routeName: (ctx) =>
+            CategoriesSnacksScreen(_availableSnacks),
         SnackDetailScreen.routeName: (ctx) => SnackDetailScreen(),
-        FiltersScreen.routeName: (ctx) => FiltersScreen(),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(_filters, _setFilters),
       },
       // onGenerateRoute: (settings) {
       //   print(settings.arguments);
