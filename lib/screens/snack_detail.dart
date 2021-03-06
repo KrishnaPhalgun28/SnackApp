@@ -4,6 +4,11 @@ import 'package:SnackApp/database/snacks.dart';
 class SnackDetailScreen extends StatelessWidget {
   static const routeName = '/snack-detail';
 
+  final Function toggleFavourite;
+  final Function isFavourite;
+
+  SnackDetailScreen(this.toggleFavourite, this.isFavourite);
+
   @override
   Widget build(BuildContext context) {
     final snackId = ModalRoute.of(context).settings.arguments;
@@ -99,12 +104,11 @@ class SnackDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.close,
-        ),
-        onPressed: () {
-          Navigator.of(context).pop(snackId);
-        },
+        child: Icon(isFavourite(snackId) ? Icons.star : Icons.star_border),
+        // onPressed: () {
+        //   Navigator.of(context).pop(snackId);
+        // },
+        onPressed: () => toggleFavourite(snackId),
       ),
     );
   }

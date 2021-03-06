@@ -38,11 +38,11 @@ class _CategoriesSnacksScreenState extends State<CategoriesSnacksScreen> {
     super.didChangeDependencies();
   }
 
-  void _removeSnack(String snackId) {
-    setState(() {
-      displayedSnacks.removeWhere((snack) => snack.id == snackId);
-    });
-  }
+  // void _removeSnack(String snackId) {
+  //   setState(() {
+  //     displayedSnacks.removeWhere((snack) => snack.id == snackId);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class _CategoriesSnacksScreenState extends State<CategoriesSnacksScreen> {
               duration: displayedSnacks[index].duration,
               complexity: displayedSnacks[index].complexity,
               affordability: displayedSnacks[index].affordability,
-              removeItem: _removeSnack,
+              // removeItem: _removeSnack,
             );
           },
           itemCount: displayedSnacks.length,
