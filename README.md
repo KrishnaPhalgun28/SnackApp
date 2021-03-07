@@ -1,16 +1,42 @@
 # SnackApp
 
-A new Flutter project.
+Browse through the diverse collection of recipes of delicious snacks that satisfy your cravings. They provide not just recipes but overall instruction for easy cooking.
 
-## Getting Started
+### Getting Started
 
-This project is a starting point for a Flutter application.
+1. Go to the project root. To get the required dependencies, execute the following command:
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+flutter pub get 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+2. Check that an Android device is running. To run the app, execute the following command:
+
+
+flutter run
+
+
+3. After the app build completes, you will see the SnackApp on your device.
+
+or
+
+1. Install SnackApp.apk on an Android device to test the application.
+
+### Learning Objectives
+
+- Navigation basics
+- Passing data between pages
+- Tabs, Drawers & Dialogs
+
+### Useful Resouces
+
+- https://flutter.dev/docs/development/ui/navigation
+- https://flutter.dev/docs/cookbook/navigation/navigate-with-arguments
+
+### Screenshots
+
+<p>
+  <img src="screenshots/ss1.jpeg" width=200/>
+  <img src="screenshots/ss2.jpeg" width=200/>
+  <img src="screenshots/ss3.jpeg" width=200/>
+</p>
