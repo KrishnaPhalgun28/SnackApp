@@ -34,7 +34,7 @@ class SnackDetailScreen extends StatelessWidget {
             color: Colors.green,
           ),
         ),
-        height: 100,
+        height: 150,
         width: 330,
         child: child,
       );
